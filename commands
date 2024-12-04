@@ -1,0 +1,3 @@
+npx sequelize-cli model:generate --name User --attributes dateOfBirth:date,phoneNumber:string
+
+npx sequelize-cli model:generate --name Category --attributes name:string
