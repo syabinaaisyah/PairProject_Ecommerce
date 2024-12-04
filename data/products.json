@@ -1,0 +1,35 @@
+[
+    {
+      "name": "Strawberry",
+      "price": 150000,
+      "stock": 50,
+      "description": "Stroberi merupakan salah satu jenis buah beri yang mudah ditemukan di Indonesia. Buah ini umumnya berwarna merah terang dan memiliki perpaduan rasa manis serta asam. Selain dikonsumsi langsung, buah stroberi juga dapat diolah menjadi berbagai jenis produk makanan, seperti selai, sirop, puding, dan kue.",
+      "imgUrl": "https://primayahospital.b-cdn.net/wp-content/uploads/2024/03/Strawberry2.jpg",
+      "CategoryId": 6
+    },
+    {
+      "name": "Peach",
+      "price": 100000,
+      "stock": 53,
+      "description": "Buah Peach kaya akan serat dan vitamin C berbagai nutrisi di dalamnya membuat buah ini mampu melawan peradangan dalam tubuh",
+      "imgUrl": "https://statik.tempo.co/data/2017/05/09/id_605639/605639_650.jpg",
+      "CategoryId": 11
+    },
+    {
+      "name": "Leci",
+      "price": 200000,
+      "stock": 20,
+      "description": "Buah ini kaya akan kalori dan nutrisi yang baik untuk mencukupi kebutuhan energi dan gizi anak",
+      "imgUrl": "https://res.cloudinary.com/dk0z4ums3/image/upload/v1619732602/attached_image/6-manfaat-leci-untuk-anak-0-alodokter.jpg",
+      "CategoryId": 10
+    },
+    {
+      "name": "Kesemek",
+      "price": 2000,
+      "stock": 12,
+      "description": "Tidak hanya rasanya enak, buah ini juga kaya akan nutrisi yang bermanfaat untuk kita",
+      "imgUrl": "https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/01/2024/10/22/unnamed-4-1932965671.jpg",
+      "CategoryId": 5
+    }
+  ]
+  
