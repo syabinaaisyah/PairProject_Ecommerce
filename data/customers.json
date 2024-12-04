@@ -1,0 +1,29 @@
+[{
+    "id": 1,
+    "name": "Puspita Sari",
+    "gender": "Female",
+    "email": "Akun1@dell.com",
+    "password": "Akun1",
+    "UserId": 1
+   }, {
+    "id": 2,
+    "name": "Angkasa",
+    "gender": "Male",
+    "email": "Akun2@dell.com",
+    "password": "Akun2",
+    "UserId": 2
+    }, {
+    "id": 3,
+    "name": "Cantika Putri",
+    "gender": "Female",
+    "email": "Akun3@dell.com",
+    "password": "Akun3",
+    "UserId": 3
+    }, {
+    "id": 4,
+    "name": "Putra Langit",
+    "gender": "Male",
+    "email": "Akun4@dell.com",
+    "password": "Akun4",
+    "UserId": 4
+   }]
