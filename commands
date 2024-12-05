@@ -16,3 +16,6 @@ npx sequelize-cli seed:generate --name demo-customer
 npx sequelize-cli seed:generate --name demo-category
 npx sequelize-cli seed:generate --name demo-product
 npx sequelize-cli seed:generate --name demo-order
+
+
+
