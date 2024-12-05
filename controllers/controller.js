@@ -114,6 +114,7 @@ class Controller {
             res.send(err)
         }
     }
+    
 
     static async getTransactionbyUserId(req, res) {
         try {
@@ -264,7 +265,14 @@ class Controller {
 
     static async showUsers(req, res) {
         try {
-            const users = await Customer.findAll();
+            const users = await User.findAll({
+                include: [{
+                    model: Customer,
+                    as: 'customer', 
+                    attributes: ['name', 'gender']
+                }],
+            });
+            console.log("🚀 ~ Controller ~ showUsers ~ users:", users[0])
             res.render('users', { users });
         } catch (err) {
             console.log(err);
