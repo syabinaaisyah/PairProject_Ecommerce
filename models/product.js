@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
             msg: 'Please provide the product name.',
           },
           notEmpty: {
-            msg: 'Product name cannot be empty. Please input a valid name.',
+            msg: 'Mohon masukkan nama produk',
           },
         },
       },
@@ -55,32 +55,19 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notNull: {
-            msg: 'Please provide the price of the product.',
+            msg: 'Mohon masukkan harga produk',
           },
           isInt: {
-            msg: 'Price must be a whole number. Please input a valid price.',
+            msg: 'Mohon masukkan harga produk sebagai angka',
           },
           min: {
             args: [0],
-            msg: 'Price cannot be negative. Please input a valid price.',
+            msg: 'Harga produk tidak bisa negatif',
           },
         },
       },
       stock: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'Please specify the stock quantity.',
-          },
-          isInt: {
-            msg: 'Stock must be a whole number. Please input a valid stock quantity.',
-          },
-          min: {
-            args: [0],
-            msg: 'Stock cannot be negative. Please input a valid stock quantity.',
-          },
-        },
       },
       description: {
         type: DataTypes.STRING,
@@ -90,7 +77,7 @@ module.exports = (sequelize, DataTypes) => {
             msg: 'Please provide a description for the product.',
           },
           notEmpty: {
-            msg: 'Description cannot be empty. Please input a valid description.',
+            msg: 'Mohon masukkan deskripsi produk',
           },
         },
       },
@@ -99,13 +86,13 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notNull: {
-            msg: 'Please provide a URL for the product image.',
+            msg: 'Mohon masukkan link foto produk.',
           },
           notEmpty: {
-            msg: 'Image URL cannot be empty. Please input a valid URL.',
+            msg: 'Mohon masukkan link foto produk',
           },
           isUrl: {
-            msg: 'Image URL must be a valid URL. Please provide a correct URL.',
+            msg: 'Mohon pastikan link foto produk benar',
           },
         },
       },
@@ -114,10 +101,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notNull: {
-            msg: 'Please select a category for the product.',
+            msg: 'Mohon pilih kategori produk',
           },
           isInt: {
-            msg: 'CategoryId must be a whole number. Please provide a valid category.',
+            msg: 'Mohon pilih kategori produk',
           },
         },
       },
@@ -125,6 +112,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       hooks: {
         beforeCreate: (product, options) => {
+          // console.log(`hook trigger`);
+          
           product.stock = 0;
         }
       },
