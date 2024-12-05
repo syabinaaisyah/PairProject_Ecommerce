@@ -1,29 +1,36 @@
 [{
-    "id": 1,
-    "name": "Puspita Sari",
-    "gender": "Female",
-    "email": "Akun1@dell.com",
-    "password": "Akun1",
+    "name": "Adi Santoso",
+    "address": "Jl. Merdeka No. 1, Jakarta",
+    "phoneNumber": "081234567890",
+    "balance": 1500000,
+    "gender": "male",
     "UserId": 1
-   }, {
-    "id": 2,
-    "name": "Angkasa",
-    "gender": "Male",
-    "email": "Akun2@dell.com",
-    "password": "Akun2",
+  }, {
+    "name": "Kartika Putri",
+    "address": "Jl. Sudirman No. 20, Bandung",
+    "phoneNumber": "082345678901",
+    "balance": 2000000,
+    "gender": "female",
     "UserId": 2
-    }, {
-    "id": 3,
-    "name": "Cantika Putri",
-    "gender": "Female",
-    "email": "Akun3@dell.com",
-    "password": "Akun3",
+  }, {
+    "name": "Yusuf Hidayat",
+    "address": "Jl. Gajah Mada No. 5, Surabaya",
+    "phoneNumber": "083456789012",
+    "balance": 3000000,
+    "gender": "male",
     "UserId": 3
-    }, {
-    "id": 4,
-    "name": "Putra Langit",
-    "gender": "Male",
-    "email": "Akun4@dell.com",
-    "password": "Akun4",
+  }, {
+    "name": "Siti Rahma",
+    "address": "Jl. Diponegoro No. 15, Medan",
+    "phoneNumber": "084567890123",
+    "balance": 1200000,
+    "gender": "female",
     "UserId": 4
-   }]
+  }, {
+    "name": "Dian Kusuma",
+    "address": "Jl. Pemuda No. 8, Yogyakarta",
+    "phoneNumber": "085678901234",
+    "balance": 2500000,
+    "gender": "female",
+    "UserId": 5
+  }]
