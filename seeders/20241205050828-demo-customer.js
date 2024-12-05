@@ -6,13 +6,13 @@ const { hashSync } = require('bcryptjs');
 module.exports = {
   
   async up (queryInterface, Sequelize) {
-    console.log(`test`);
+    // console.log(`test`);
       let data = require("../data/customers.json").map((e) => {
         delete e.id;
         e.createdAt = e.updatedAt = new Date();
         return e;
       });
-      console.log("🚀 ~ data ~ data:", data)
+      // console.log("🚀 ~ data ~ data:", data)
       // console.log(data);
       await queryInterface.bulkInsert("Customers", data, {});
     /**

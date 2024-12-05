@@ -3,4 +3,4 @@ function formatCurrency(num){
    }
    
    
-   module.exports = formatCurrency;
+   module.exports = {formatCurrency};
