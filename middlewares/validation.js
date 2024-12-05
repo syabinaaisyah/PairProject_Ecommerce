@@ -16,8 +16,19 @@ const validateLogin = [
 
 const validateRegister = [
   body('email').isEmail().withMessage('Email is invalid'),
+  body('name').notEmpty().withMessage('Name cannot be empty'),
   body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long'),
-  body('dateOfBirth').isDate().withMessage('Invalid date of birth'),
+  body('dateOfBirth')
+    .notEmpty()
+    .withMessage('Date Of Birth cannot be empty')
+    .custom((value) => {
+      const birthDate = new Date(value);
+      const age = new Date().getFullYear() - birthDate.getFullYear();
+      if (age <= 12) {
+        throw new Error('Age must be above 12 years');
+      }
+      return true;
+    }),
   handleValidationErrors,
 ];
 
@@ -62,3 +73,5 @@ module.exports = {
   validateOrderCreation,
   validateProductFilter,
 };
+
+

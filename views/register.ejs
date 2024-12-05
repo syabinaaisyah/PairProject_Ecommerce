@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+     * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  body {
+    background-color: rgba(0, 213, 255, 0.881);
+  }
+  .container {
+    height: 31.25em;
+    width: 31.25em;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+  }
+  form {
+    width: 35.75em;
+    height: 44.75em;
+    background-color: #ffffff;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: calc(50% + 3.1em);
+    left: 50%;
+    padding: 0 3.1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.5em;
+  }
+  form label {
+    display: block;
+    margin-bottom: 0.2em;
+    font-weight: 600;
+    color: #2e0d30;
+  }
+  form input {
+    font-size: 0.95em;
+    font-weight: 400;
+    color: #3f3554;
+    padding: 0.3em;
+    border: none;
+    border-bottom: 0.12em solid #3f3554;
+    outline: none;
+  }
+  form input:focus {
+    border-color: rgba(0, 213, 255, 0.881);
+  }
+  form input:not(:last-child) {
+    margin-bottom: 0.9em;
+  }
+  form button {
+    font-size: 0.95em;
+    padding: 0.8em 0;
+    border-radius: 2em;
+    border: none;
+    outline: none;
+    background-color: rgba(0, 213, 255, 0.881);
+    color: #2e0d30;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    margin-top: 0.8em;
+  }
+  @media screen and (max-width: 500px) {
+    .container {
+      font-size: 14px;
+    }
+  }
+  /* name, gender, email, password */
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form action="/register" method="post">
+        <label for="email">Email:</label>
+        <input name="email" type="text" id="email" placeholder="Email here..." />
+        <label for="name">Name:</label>
+        <input name="name" type="text" id="name" placeholder="Name here..." />
+        <label for="password">Password:</label>
+        <input name="password" type="text" id="password" placeholder="Password here..." />
+        <label for="dateOfBirth">DateOfBirth:</label>
+        <input name="dateOfBirth" type="date" id="dateOfBirth" placeholder="DateOfBirth here..." />
+        <label for="address">Address:</label>
+        <input name="address" type="text" id="address" placeholder="Address here..." />
+        <label for="phoneNumber">Phone Number:</label>
+        <input name="phoneNumber" type="number" id="phoneNumber" placeholder="PhoneNumber here..." />
+        <label for="gender">Gender:</label>
+        <input name="gender" type="text" id="gender" placeholder="Gender here..." />
+        <label for="role">Role:</label>
+        <input name="role" type="password" id="role" placeholder="Role here..." />
+       <button type="submit">Register</button>
+      </form>
+  </body>
+</html>
