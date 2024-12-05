@@ -19,9 +19,9 @@
     <tbody>
         <% users.forEach(user => { %>
             <tr>
-                <td><%= user.name %></td>
+                <td><%= user.customer.name %></td>
                 <td><%= user.email %></td>
-                <td><%= user.gender %></td>
+                <td><%= user.customer.gender %></td>
             </tr>
         <% }); %>
     </tbody>
