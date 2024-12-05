@@ -9,11 +9,15 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.7",
+    "sequelize-cli": "^6.6.2"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "easyinvoice": "^3.0.47",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
+    "express-validator": "^7.2.0",
     "express-session": "^1.18.1",
     "pg": "^8.13.1",
     "sequelize": "^6.37.5"

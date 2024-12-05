@@ -1,17 +1,26 @@
 [{
- "id": 1,
- "dateOfBirth": "01/06/2000",
- "phoneNumber": 8111111111
-}, {
- "id": 2, 
- "dateOfBirth": "05/03/2005",
- "phoneNumber": 8222222222
-}, {
- "id": 3,
- "dateOfBirth": "08/01/2003",
- "phoneNumber": 8333333333
-}, {
- "id": 4,
- "dateOfBirth": "01/10/2007",
- "phoneNumber": 8444444444
-}]
+    "email": "adi.santoso@example.com",
+    "password": "hashedpassword123",
+    "dateOfBirth": "1990-05-14",
+    "role": "admin"
+  }, {
+    "email": "kartika.putri@example.com",
+    "password": "hashedpassword456",
+    "dateOfBirth": "1995-10-21",
+    "role": "customer"
+  }, {
+    "email": "yusuf.hidayat@example.com",
+    "password": "hashedpassword789",
+    "dateOfBirth": "1988-12-01",
+    "role": "customer"
+  }, {
+    "email": "siti.rahma@example.com",
+    "password": "hashedpassword321",
+    "dateOfBirth": "1993-07-12",
+    "role": "customer"
+  }, {
+    "email": "dian.kusuma@example.com",
+    "password": "hashedpassword654",
+    "dateOfBirth": "1998-03-05",
+    "role": "customer"
+  }]

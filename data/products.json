@@ -1,34 +1,106 @@
-[
-  {
-    "name": "Baju Astronot",
-    "price": 150000,
-    "stock": 12,
-    "description": "baju yang cocok untuk aktifitas sehari-hari di luar angkasa",
-    "imgUrl": "https://img.lazcdn.com/g/p/69762025b1639490909e11ff15a835fd.jpg_960x960q80.jpg_.webp",
-    "CategoryId": 6
-  },
-  {
-    "name": "Kipas Angin Terbang",
-    "price": 1000000,
-    "stock": 53,
-    "description": "Kipas yang bisa terbang dan memberikan kesejukan ketika berkunjung ke Matahari ",
-    "imgUrl": "https://www.sejahtera.co.id/assets/product/KPS049/sejahtera-houseware_ktyxp_kps049_xxl.jpg",
-    "CategoryId": 11
-  },
-  {
-    "name": "Smartphone Nokay",
-    "price": 200000,
-    "stock": 20,
-    "description": "Smartphone yang selalu dalam keadaan okay",
-    "imgUrl": "https://i0.wp.com/btr.michaelkwan.com/wp-content/uploads/2013/07/4788569980_4f9353c859.jpg?fit=500%2C281&ssl=1",
-    "CategoryId": 10
-  },
-  {
-    "name": "Kantong Doraemang",
-    "price": 2000,
-    "stock": 12,
-    "description": "kantong plastik yang kuat bisa menampung barang apa saja ",
-    "imgUrl": "https://down-id.img.susercontent.com/file/ebbf85a3eed709ff7e81ecfd6d672b5e",
-    "CategoryId": 5
-  }
-]
+[{
+  "name": "Samashi Washing Machine 16kg",
+  "price": 8000000,
+  "stock": 30,
+  "description": "Mesin cuci bukaan depan Samashi dengan kapasitas 16kg pencuci dan 8kg pengering, dilengkapi teknologi hemat energi dan aksesoris tambahan. Garansi 2 tahun.",
+  "imageURL": "https://source.unsplash.com/800x600/?washing-machine",
+  "CategoryId": 1
+}, {
+  "name": "WashiTech 12kg Washer",
+  "price": 7500000,
+  "stock": 25,
+  "description": "Mesin cuci bukaan atas WashiTech dengan kapasitas 12kg, dilengkapi fitur pengaturan cuci pintar dan hemat listrik. Cocok untuk keluarga besar.",
+  "imageURL": "https://source.unsplash.com/800x600/?washing-machine",
+  "CategoryId": 1
+}, {
+  "name": "MegaWash 18kg Washer",
+  "price": 10500000,
+  "stock": 18,
+  "description": "Mesin cuci MegaWash dengan kapasitas 18kg, pengering 10kg, teknologi pengering cepat, dan fitur hemat energi. Garansi 3 tahun.",
+  "imageURL": "https://source.unsplash.com/800x600/?washing-machine",
+  "CategoryId": 1
+}, {
+  "name": "EcoClean Front Load",
+  "price": 9000000,
+  "stock": 20,
+  "description": "Mesin cuci EcoClean dengan pengaturan suhu dan kecepatan cuci otomatis, hemat energi, dan ramah lingkungan.",
+  "imageURL": "https://source.unsplash.com/800x600/?washing-machine",
+  "CategoryId": 1
+}, {
+  "name": "PowerWash 10kg",
+  "price": 5000000,
+  "stock": 22,
+  "description": "Mesin cuci PowerWash dengan kapasitas 10kg, pengaturan multi-fungsi, serta teknologi anti-getar.",
+  "imageURL": "https://source.unsplash.com/800x600/?washing-machine",
+  "CategoryId": 1
+}, {
+  "name": "Coolax Refrigerator 2P",
+  "price": 15000000,
+  "stock": 25,
+  "description": "Kulkas dua pintu Coolax dengan kapasitas besar, teknologi pendinginan cepat, dan hemat listrik. Dilengkapi rak fleksibel dan tempat penyimpanan sayur khusus.",
+  "imageURL": "https://source.unsplash.com/800x600/?refrigerator",
+  "CategoryId": 2
+}, {
+  "name": "ChillMaster 3-Door Fridge",
+  "price": 20000000,
+  "stock": 20,
+  "description": "Kulkas 3 pintu ChillMaster dengan fitur teknologi pembekuan cepat dan hemat energi. Kapasitas besar dengan pengaturan suhu yang bisa disesuaikan.",
+  "imageURL": "https://source.unsplash.com/800x600/?refrigerator",
+  "CategoryId": 2
+}, {
+  "name": "SmartFreeze Fridge",
+  "price": 17000000,
+  "stock": 18,
+  "description": "Kulkas SmartFreeze dengan teknologi hemat daya, penyimpanan fleksibel, dan fitur pengaturan suhu digital.",
+  "imageURL": "https://source.unsplash.com/800x600/?refrigerator",
+  "CategoryId": 2
+}, {
+  "name": "FreshLife 2D Fridge",
+  "price": 14000000,
+  "stock": 30,
+  "description": "Kulkas dua pintu FreshLife dengan teknologi eco-friendly, rak penyimpanan khusus, dan kontrol suhu yang akurat.",
+  "imageURL": "https://source.unsplash.com/800x600/?refrigerator",
+  "CategoryId": 2
+}, {
+  "name": "CoolSpace Refrigerator",
+  "price": 12000000,
+  "stock": 23,
+  "description": "Kulkas CoolSpace dengan desain modern, teknologi pendinginan yang dapat diatur, serta hemat energi.",
+  "imageURL": "https://source.unsplash.com/800x600/?refrigerator",
+  "CategoryId": 2
+}, {
+  "name": "Airblee AC 2PK",
+  "price": 6000000,
+  "stock": 25,
+  "description": "Pendingin ruangan Airblee tipe split dengan kapasitas 2PK, dilengkapi fitur hemat energi dan pengatur suhu pintar. Garansi resmi 2 tahun. Cocok untuk ruangan besar.",
+  "imageURL": "https://source.unsplash.com/800x600/?air-conditioner",
+  "CategoryId": 3
+}, {
+  "name": "CoolBreeze AC 1.5PK",
+  "price": 5000000,
+  "stock": 30,
+  "description": "Pendingin ruangan CoolBreeze tipe split dengan kapasitas 1.5PK, desain elegan dan fitur hemat energi.",
+  "imageURL": "https://source.unsplash.com/800x600/?air-conditioner",
+  "CategoryId": 3
+}, {
+  "name": "MaxCool 2.5PK",
+  "price": 7500000,
+  "stock": 22,
+  "description": "AC MaxCool dengan teknologi pengaturan suhu otomatis dan penghemat daya. Cocok untuk ruang kantor dan rumah.",
+  "imageURL": "https://source.unsplash.com/800x600/?air-conditioner",
+  "CategoryId": 3
+}, {
+  "name": "AirSmart AC 3PK",
+  "price": 10000000,
+  "stock": 18,
+  "description": "AC AirSmart tipe split dengan teknologi inverter, pengatur suhu otomatis, dan garansi resmi.",
+  "imageURL": "https://source.unsplash.com/800x600/?air-conditioner",
+  "CategoryId": 3
+}, {
+  "name": "PowerCool AC 2PK",
+  "price": 7000000,
+  "stock": 24,
+  "description": "Pendingin ruangan PowerCool dengan desain modern, penghemat daya, serta kontrol suhu pintar.",
+  "imageURL": "https://source.unsplash.com/800x600/?air-conditioner",
+  "CategoryId": 4
+}]

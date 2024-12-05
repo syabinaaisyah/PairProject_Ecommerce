@@ -10,40 +10,19 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Customer.belongsToMany(models.Product, {
-        through: models.Order,
-        foreignKey: 'CustomerId',
-        otherKey: 'ProductId'
-      })
-      Customer.hasOne(models.User)
+      
     }
   }
   Customer.init({
     name: DataTypes.STRING,
+    address: DataTypes.STRING,
+    phoneNumber: DataTypes.STRING,
+    balance: DataTypes.INTEGER,
     gender: DataTypes.STRING,
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        isEmail: true,
-        notEmpty: {
-          msg: 'jangan Null dong!'
-        }
-      }
-    },
-    password: DataTypes.STRING
+    UserId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Customer',
-    hooks: {
-      beforeCreate(instance, options){
-        const salt = bcrypt.genSaltSync(10);
-        const hash = bcrypt.hashSync(instance.password, salt);
-
-        instance.password = hash
-      }
-    }
   });
   return Customer;
 };
