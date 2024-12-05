@@ -114,6 +114,7 @@ class Controller {
             res.send(err)
         }
     }
+    
 
     static async getTransactionbyUserId(req, res) {
         try {
@@ -125,7 +126,7 @@ class Controller {
                 ],
                 order: [['createdAt', 'DESC']],
             });
-            res.render('transactions', { orders });
+            res.render('transactionsUser', { orders });
         } catch (err) {
             console.log(err);
             res.send(err)
@@ -136,6 +137,7 @@ class Controller {
     static async dashboardAdmin(req, res) {
         try {
             
+            const products = await Product.findAll();
             const productCount = await Product.count();
     
             const categoryStats = await Category.findAll({
@@ -146,36 +148,36 @@ class Controller {
                 include: { model: Product, as: 'products', attributes: [] },
                 group: ['Category.id']
             });
+            // console.log("🚀 ~ Controller ~ dashboardAdmin ~ categoryStats:", categoryStats)
     
-            const userStats = await Customer.findAll({
+            const userStats = await Customer.customerStat()
+            // console.log("🚀 ~ Controller ~ dashboardAdmin ~ userStats:", userStats)
+    
+            const transactions = await Order.findAll({
                 attributes: [
-                    [fn('COUNT', col('gender')), 'total'],
-                    'gender'
+                    'CustomerId',
+                    [fn('COUNT', col('product.price')), 'totalTransaction'],
+                    [fn('SUM', col('product.price')), 'totalIncome'],
+                    [fn('MAX', col('product.price')), 'highestTransaction'],
+                    [fn('MIN', col('product.price')), 'lowestTransaction'],
+                    [fn('AVG', col('product.price')), 'averageTransaction']
                 ],
-                group: ['gender']
+                include: [{
+                    model: Product,
+                    as: 'product', 
+                    attributes: []
+                }],
+                group: ['Order.CustomerId']
             });
-    
-            // const transactions = await Order.findAll({
-            //     attributes: [
-            //         'CustomerId',
-            //         [fn('SUM', col('Products.price')), 'totalIncome'],
-            //         [fn('MAX', col('Products.price')), 'highestTransaction'],
-            //         [fn('MIN', col('Products.price')), 'lowestTransaction'],
-            //         [fn('AVG', col('Products.price')), 'averageTransaction']
-            //     ],
-            //     include: [{
-            //         model: Product,
-            //         as: 'Products', 
-            //         attributes: []
-            //     }],
-            //     group: ['Order.CustomerId']
-            // });
+            // console.log("🚀 ~ Controller ~ dashboardAdmin ~ transactions[0]:", transactions[0])
     
             res.render('adminDashboard', {
+                products,
                 productCount,
                 categoryStats,
                 userStats,
-                // transactions,
+                transactions,
+                formatCurrency
             });
         } catch (err) {
             console.log(err);
@@ -187,7 +189,8 @@ class Controller {
     static async showAddProductsForm(req, res) {
         try {
             const categories = await Category.findAll();
-            res.render('addProduct', { categories });
+            const { errors } = req.query
+            res.render('addProduct', { categories, errors});
         } catch (err) {
             console.log(err);
             res.send(err)
@@ -202,12 +205,18 @@ class Controller {
                 price,
                 description,
                 imageURL,
-                CategoryId,
-                stock: 0,
+                CategoryId
             });
+            console.log(`sudah selesai create`);
+            
             res.redirect('/admin/dashboard');
         } catch (err) {
             console.log(err);
+            if (err.name === "SequelizeValidationError") {
+                const errors = err.errors.map(x => x.message)
+                res.redirect(`/admin/products/add?errors=${errors}`)
+                return
+            }
             res.send(err)
         }
     }
@@ -223,6 +232,27 @@ class Controller {
         }
     }
 
+    static async postEditProductsForm(req, res) {
+        try {
+            // console.log("🚀 ~ Controller ~ postEditProductsForm ~ req:", req.params)
+            const {id} = req.params
+            const {name, price, stock, description, imageURL, CategoryId} = req.body
+            // console.log("🚀 ~ Controller ~ postEditProductsForm ~ body:", req.body)
+            await Product.update(
+                { name, price, stock, description, imageURL, CategoryId},
+                {
+                    where: {
+                        id
+                    },
+                }
+            )
+            res.redirect('/admin/dashboard')
+        } catch (error) {
+            console.log(error);
+            res.send(error)
+        }
+    }
+
     static async deleteProductById(req, res) {
         try {
             await Product.destroy({ where: { id: req.params.id } });
@@ -235,7 +265,14 @@ class Controller {
 
     static async showUsers(req, res) {
         try {
-            const users = await Customer.findAll();
+            const users = await User.findAll({
+                include: [{
+                    model: Customer,
+                    as: 'customer', 
+                    attributes: ['name', 'gender']
+                }],
+            });
+            console.log("🚀 ~ Controller ~ showUsers ~ users:", users[0])
             res.render('users', { users });
         } catch (err) {
             console.log(err);
@@ -252,7 +289,7 @@ class Controller {
                 ],
                 order: [['createdAt', 'DESC']],
             });
-            res.render('transactions', { transactions });
+            res.render('transactionsAdmin', { transactions, formatCurrency });
         } catch (err) {
             console.log(err);
             res.send(err)

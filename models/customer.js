@@ -1,4 +1,6 @@
 'use strict';
+const { fn, col } = require('sequelize');
+
 const {
   Model
 } = require('sequelize');
@@ -9,6 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+    static customerStat(){
+      return Customer.findAll({
+      attributes: [
+          [fn('COUNT', col('gender')), 'total'],
+          'gender'
+      ],
+      group: ['gender']
+  })}
     static associate(models) {
       // define association here
       Customer.belongsTo(models.User, {
