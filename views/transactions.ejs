@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>My Orders</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Date</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% orders.forEach(order => { %>
+            <tr>
+                <td><%= order.product.name %></td>
+                <td><%= order.createdAt.toDateString() %></td>
+                <td><%= order.product.price %></td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+</body>
+</html>

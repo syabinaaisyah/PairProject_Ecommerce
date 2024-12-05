@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+<h2>Products</h2>
+<a href="/admin/products/add">Add Product</a>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% products.forEach(product => { %>
+            <tr>
+                <td><%= product.name %></td>
+                <td><%= product.price %></td>
+                <td><%= product.stock %></td>
+                <td>
+                    <a href="/admin/products/edit/<%= product.id %>">Edit</a>
+                    <a href="/admin/products/delete/<%= product.id %>">Delete</a>
+                </td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+<h2>Categories</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Product Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% categoryStats.forEach(category => { %>
+            <tr>
+                <td><%= category.name %></td>
+                <td><%= category.productCount %></td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+<h2>Transactions</h2>
+<p>Total Income: <%= transactions.totalIncome %></p>
+<p>Highest Transaction: <%= transactions.highestTransaction %></p>
+<p>Lowest Transaction: <%= transactions.lowestTransaction %></p>
+<p>Average Transaction: <%= transactions.averageTransaction %></p>
+<a href="/admin/showTransaction">View All Transactions</a>
+</body>
+</html>

@@ -13,7 +13,7 @@ module.exports = {
         e.createdAt = e.updatedAt = new Date();
         return e;
       });
-      console.log("🚀 ~ data ~ data:", data)
+      // console.log("🚀 ~ data ~ data:", data)
       // console.log(data);
       await queryInterface.bulkInsert("Customers", data, {});
     /**

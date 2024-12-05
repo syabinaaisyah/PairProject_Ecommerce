@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include('./layout') %>
+        <h1>Products</h1>
+            <form action="/products" method="GET">
+                <input type="text" name="search" placeholder="Search for products" value="<%= search || '' %>">
+                <select name="category">
+                    <option value="">All Categories</option>
+                    <% categories.forEach(category=> { %>
+                        <option value="<%= category.id %>" <%=category.id==selectedCategory ? 'selected' : '' %>>
+                            <%= category.name %>
+                        </option>
+                        <% }); %>
+                </select>
+                <button type="submit">Search</button>
+            </form>
+            <div class="product-list">
+                <% products.forEach(product=> { %>
+                    <div class="product">
+                        <h3><a href="/products/<%= product.id %>">
+                                <%= product.name %>
+                            </a></h3>
+                        <img src="<%= product.imageURL %>" alt="photoProduct" width="100px">
+                        <p>Price: <%= formatCurrency(product.price) %>
+                        </p>
+                        <p>Status: <%= product.status %>
+                        </p>
+                    </div>
+                    <% }); %>
+            </div>
+</body>
+
+</html>
