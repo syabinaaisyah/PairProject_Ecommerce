@@ -4,23 +4,26 @@ const router = express.Router()
 
 //Role User
 // NAVBAR: 
-// myProfile (can log out & top up)
-// myCart (can pay)
+// myProfile (can log out & top up) 
 // myOrder
 // column Balance -> only display balance
 
-router.get("/home", Controller.getAllProducts); // *instance method* "Almost sold out" if stock < 5, *search bar* & *filter* category
+// Tambahkan routing login/register
+// localhost:3000/
+
+router.get("/products", Controller.getAllProducts); // *instance method* "Almost sold out" if stock < 5, *search bar* & *filter* category
 
 router.get("/myProfile", Controller.myProfile); // For Logout & Top Up Balance (form)
 router.get("/logout", Controller.logout); // For Logout
 router.post("/myProfile", Controller.topUpBalance); // Top Up UPDATE Balance
 
-router.get("/myCart", Controller.myCart); // get item price, click "Pay Button" -> deduct balance
-router.post("/myCart", Controller.deductBalance); // Pay Button -> deduct balance --> create order, redirect to myOrder
+router.get("/products/:id", Controller.getProductbyId); // show Description + Tombol BUY
+
+router.get("/products/:id/shop", Controller.shop); // get item price, click "Pay Button" -> deduct balance
+router.post("/products/:id/shop", Controller.deductBalance); // Pay Button -> deduct balance --> create order, redirect to myOrder
 
 router.get("/myOrders", Controller.getTransactionbyUserId); // query Transaction where userId, order by Created Date
 
-router.get("/showProductDetail", Controller.getProductbyId); // show Description
 
 // Role Admin
 router.get("/admin/dashboard", Controller.dashboardAdmin); 
