@@ -17,7 +17,7 @@
     font-family: "Poppins", sans-serif;
   }
   body {
-    background-color: pink;
+    background-color: rgba(0, 213, 255, 0.881);
   }
   .container {
     height: 31.25em;
@@ -57,7 +57,7 @@
     outline: none;
   }
   form input:focus {
-    border-color: pink;
+    border-color: rgba(0, 213, 255, 0.881);
   }
   form input:not(:last-child) {
     margin-bottom: 0.9em;
@@ -68,12 +68,25 @@
     border-radius: 2em;
     border: none;
     outline: none;
-    background-color: pink;
+    background-color: rgba(0, 213, 255, 0.881);
     color: #2e0d30;
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 0.15em;
     margin-top: 0.8em;
+  }
+  /* New styles for register link */
+  form a {
+    text-align: center;
+    display: block;
+    margin-top: 1em;
+    color: rgba(0, 213, 255, 0.881);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  form a:hover {
+    color: #2e0d30;
   }
   .panda-face {
     height: 7.5em;
@@ -262,11 +275,12 @@
   <body>
     <div class="container">
       <form action="/login" method="post">
-        <label for="username">Username:</label>
-        <input name="name" type="text" id="username" placeholder="Username here..." />
+        <label for="email">Email:</label>
+        <input name="email" type="text" id="email" placeholder="Email here..." />
         <label for="password">Password:</label>
         <input name="password" type="password" id="password" placeholder="Password here..." />
        <button type="submit">Login</button>
+       <a href="/register">Register</a>
       </form>
       <div class="ear-l"></div>
       <div class="ear-r"></div>
@@ -289,7 +303,7 @@
     </div>
     <!-- Script -->
     <script>
-      let usernameRef = document.getElementById("username");
+      let emailRef = document.getElementById("email");
 let passwordRef = document.getElementById("password");
 let eyeL = document.querySelector(".eyeball-l");
 let eyeR = document.querySelector(".eyeball-r");
@@ -322,7 +336,7 @@ let normalHandStyle = () => {
     `;
 };
 //When clicked on username input
-usernameRef.addEventListener("focus", () => {
+emailRef.addEventListener("focus", () => {
   eyeL.style.cssText = `
     left: 0.75em;
     top: 1.12em;  
@@ -352,7 +366,7 @@ passwordRef.addEventListener("focus", () => {
 //When clicked outside username and password input
 document.addEventListener("click", (e) => {
   let clickedElem = e.target;
-  if (clickedElem != usernameRef && clickedElem != passwordRef) {
+  if (clickedElem != emailRef && clickedElem != passwordRef) {
     normalEyeStyle();
     normalHandStyle();
   }

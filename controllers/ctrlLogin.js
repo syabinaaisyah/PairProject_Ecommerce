@@ -61,17 +61,13 @@ exports.register = async (req, res) => {
 
 exports.registPage = async (req, res) => {
   try {
-    const { name, gender, email, password } = req.body;
-    const userAlreadyExist = await User.findOne({ where: { name } });
+    const { email, password, dateOfBirth, role } = req.body;
+    const userAlreadyExist = await User.findOne({ where: { email } });
     if (userAlreadyExist) {
-      return res.send("name already exists.");
+      return res.send("email already exists.");
     }
 
-    const emailAlreadyExist = await User.findOne({ where: { email } });
-    if (emailAlreadyExist) {
-      return res.send("Email already exists.");
-    }
-    await User.create({ name, gender, email, password });
+    await User.create({ email, password, dateOfBirth, role });
     res.redirect("/login");
   } catch (error) {
     console.log("🚀 ~ exports.regisPage= ~ error:", error);

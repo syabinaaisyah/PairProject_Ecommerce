@@ -1,4 +1,4 @@
-const { formatCurrency } = require('../helper/formatCurrency');
+const { formatCurrency } = require('../helpers/formatCurrency');
 const { Product, Category, Customer, User, Order, sequelize } = require('../models');
 const { Op, fn, col } = require('sequelize');
 

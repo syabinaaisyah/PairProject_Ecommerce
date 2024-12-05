@@ -17,8 +17,8 @@ app.use(express.urlencoded({ extended : true }));
    sameSite: true
   }
  }))
- app.use(require('./routes/loginRoute'));
- app.use(require('./routes/productRoute'));
+ app.use(require('./routers/loginRoute'));
+ app.use(require('./routers/index'));
 
 app.listen(port, () => {
  console.log(`Example app listening on port ${port}`)
