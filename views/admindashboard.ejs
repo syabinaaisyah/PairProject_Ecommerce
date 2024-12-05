@@ -22,11 +22,11 @@
         <% products.forEach(product => { %>
             <tr>
                 <td><%= product.name %></td>
-                <td><%= product.price %></td>
+                <td><%= formatCurrency(product.price) %></td>
                 <td><%= product.stock %></td>
                 <td>
-                    <a href="/admin/products/edit/<%= product.id %>">Edit</a>
-                    <a href="/admin/products/delete/<%= product.id %>">Delete</a>
+                    <a href="/admin/products/<%= product.id %>/edit">Edit</a>
+                    <a href="/admin/products/<%= product.id %>/delete">Delete</a>
                 </td>
             </tr>
         <% }); %>
@@ -37,23 +37,42 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>Product Count</th>
+            <th>SKU Count</th>
         </tr>
     </thead>
     <tbody>
         <% categoryStats.forEach(category => { %>
             <tr>
                 <td><%= category.name %></td>
-                <td><%= category.productCount %></td>
+                <td><%= category.dataValues.productCount %></td>
             </tr>
         <% }); %>
     </tbody>
 </table>
 <h2>Transactions</h2>
-<p>Total Income: <%= transactions.totalIncome %></p>
-<p>Highest Transaction: <%= transactions.highestTransaction %></p>
-<p>Lowest Transaction: <%= transactions.lowestTransaction %></p>
-<p>Average Transaction: <%= transactions.averageTransaction %></p>
+<p>Total Transactions: <%= transactions[0].dataValues.totalTransaction %></p>
+<p>Total Income: <%= formatCurrency(transactions[0].dataValues.totalIncome) %></p>
+<p>Highest Transaction: <%= formatCurrency(transactions[0].dataValues.highestTransaction) %></p>
+<p>Lowest Transaction: <%= formatCurrency(transactions[0].dataValues.lowestTransaction) %></p>
+<p>Average Transaction: <%= formatCurrency(transactions[0].dataValues.averageTransaction) %></p>
 <a href="/admin/showTransaction">View All Transactions</a>
+
+<h2>User Statistics</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Gender</th>
+            <th>Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% userStats.forEach(stat => { %>
+            <tr>
+                <td><%= stat.gender %>: </td>
+                <td><%= stat.dataValues.total %></td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
 </body>
 </html>

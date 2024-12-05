@@ -36,10 +36,11 @@ router.get("/admin/products/add", Controller.showAddProductsForm);
 // passing data category + hooks before create stock: 0 + validasi not null & not empty
 router.post("/admin/products/add", Controller.postAddProductsForm); // redirect back to /admin/products
 
-router.get("/admin/products/edit", Controller.showEditProductsForm); // passing old Values
-router.post("/admin/products/edit", Controller.postAddProductsForm); // redirect back to /admin/products
+router.get("/admin/products/:id/edit", Controller.showEditProductsForm); // passing old Values
+// router.post("/admin/products/:id/edit", (req, res)=> res.send(`hellooo`)); // redirect back to /admin/products
+router.post("/admin/products/:id/edit", Controller.postEditProductsForm); // redirect back to /admin/products
 
-router.get("/admin/products/delete", Controller.deleteProductById) 
+router.get("/admin/products/:id/delete", Controller.deleteProductById) 
 
 router.get("/admin/showUsers", Controller.showUsers) // see all customers
 router.get("/admin/showTransaction", Controller.showTransaction) // see all transactions and the customers' name

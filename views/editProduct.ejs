@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('./layout') %>
+<h1>Edit Product</h1>
+<form action="/admin/products/<%= product.id %>/edit" method="POST">
+    <label for="name">Product Name:</label>
+    <input type="text" name="name" value="<%= product.name %>"><br>
+    
+    <label for="price">Price:</label>
+    <input type="number" name="price" value="<%= product.price %>" step="0.01"><br>
+
+    <label for="stock">Stock:</label>
+    <input type="number" name="stock" value="<%= product.stock %>" step="0.01"><br>
+    
+    <label for="description">Description:</label>
+    <textarea name="description"><%= product.description %></textarea><br>
+    
+    <label for="imageURL">Image URL:</label>
+    <input type="text" name="imageURL" value="<%= product.imageURL %>"><br>
+    
+    <label for="CategoryId">Category:</label>
+    <select name="CategoryId" required>
+        <option value="">Choose Category....</option>
+        <% categories.forEach(category => { %>
+            <option value="<%= category.id %>" <%= category.id === product.CategoryId ? 'selected' : '' %>><%= category.name %></option>
+        <% }); %>
+    </select><br>
+    
+    <button type="submit">Update Product</button>
+</form>
+</body>
+</html>
