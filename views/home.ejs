@@ -273,14 +273,28 @@
     </style>
   </head>
   <body>
+    
     <div class="container">
+      
       <form action="/login" method="post">
+        <br>
+        <% if (typeof message !== undefined && message) { %>
+          <p style="color: green;"><%= message %></p>
+      <% } %>
+      <br>
+        <% if (typeof errors !== undefined && errors && errors.length > 0) { %>
+          <ul style="color: red;">
+            <% errors.forEach(error => { %>
+              <li><%= error.msg %></li>
+            <% }) %>
+          </ul>
+        <% } %>
         <label for="email">Email:</label>
         <input name="email" type="text" id="email" placeholder="Email here..." />
         <label for="password">Password:</label>
         <input name="password" type="password" id="password" placeholder="Password here..." />
        <button type="submit">Login</button>
-       <a href="/register">Register</a>
+       <a href="/register">Register</a> <br>
       </form>
       <div class="ear-l"></div>
       <div class="ear-r"></div>

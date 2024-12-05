@@ -1,18 +1,14 @@
 const { User, Customer } = require("../models");
 const bcrypt = require("bcryptjs");
+const { validationResult } = require("express-validator");
 
-exports.planning = async (req, res) => {
-  try {
-    res.render("homePage");
-  } catch (error) {
-    console.log("🚀 ~ exports.home= ~ error:", error);
-    res.send(error.message);
-  }
-};
 
 exports.home = async (req, res) => {
   try {
-    res.render("home");
+    const message = req.query.message || null;
+    const errors = req.session.errors || null; // Assuming errors are stored in the session or passed directly
+    req.session.errors = null; // Clear errors after rendering
+    res.render("home", {errors, message});
   } catch (error) {
     console.log("🚀 ~ exports.home= ~ error:", error);
     res.send(error.message);
@@ -21,7 +17,12 @@ exports.home = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
-    res.render("home");
+    const message = req.query.message || null;
+    const errors = req.session.errors || null; // Assuming errors are stored in the session or passed directly
+    req.session.errors = null; // Clear errors after rendering
+    res.render("home", {message, errors});
+
+    // res.render("home");
   } catch (error) {
     console.log("🚀 ~ exports.login= ~ error:", error);
     res.send(error.message);
@@ -30,23 +31,24 @@ exports.login = async (req, res) => {
 
 exports.loginPage = async (req, res) => {
   try {
-    const { name, password } = req.body;
-    const customer = await Customer.findOne({
-      where: { name },
-    });
-    if (!customer) {
-      return res.send("Invalid name or password.");
-    }
-    const validatePassword = bcrypt.compareSync(password, customer.password);
-    // console.log(validatePassword)
-    if (!validatePassword) {
-      return res.send("Invalid name or password.");
-    }
-    req.session.CustomerId = customer.id;
-    res.redirect("/products");
+    const { email, password } = req.body;
+    const user = await User.findOne({ where: { email } });
+
+    if (user && bcrypt.compareSync(password, user.password)) {
+      req.session.CustomerId = user.id; // Store the user ID in the session
+
+      // Check the user's role and redirect based on it
+      if (user.role === 'admin') {
+          return res.redirect('/admin/dashboard');
+      } else {
+          return res.redirect('/');
+      }
+  } else {
+      res.render('login', { message: 'Invalid email or password' });
+  }
   } catch (error) {
     console.log("🚀 ~ exports.loginPage= ~ error:", error);
-    res.send(error.message);
+    res.status(500).send(error.message);
   }
 };
 
@@ -61,28 +63,49 @@ exports.register = async (req, res) => {
 
 exports.registPage = async (req, res) => {
   try {
-    const { email, password, dateOfBirth, role } = req.body;
-    const userAlreadyExist = await User.findOne({ where: { email } });
-    if (userAlreadyExist) {
-      return res.send("email already exists.");
+    const { email, password, dateOfBirth, role, name, gender, address, phoneNumber } = req.body;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("register", {
+        errors: errors.array(),
+        oldInput: req.body,
+      });
     }
 
-    await User.create({ email, password, dateOfBirth, role });
-    res.redirect("/login");
+    const hashedPassword = bcrypt.hashSync(password, 10);
+
+    // Create user in Users table
+    const user = await User.create({
+      email,
+      password: hashedPassword,
+      dateOfBirth,
+      role,
+    });
+
+    // Create customer in Customers table
+    await Customer.create({
+      name,
+      address,
+      phoneNumber,
+      gender,
+      UserId: user.id,
+    });
+
+    res.redirect("/");
   } catch (error) {
-    console.log("🚀 ~ exports.regisPage= ~ error:", error);
-    res.send(error.message);
+    console.log("🚀 ~ exports.registPage= ~ error:", error);
+    res.status(500).render("register", {
+      errors: [{ msg: "Something went wrong. Please try again." }],
+      oldInput: req.body,
+    });
   }
 };
 
 exports.logOut = async (req, res) => {
   try {
-    req.session.destroy(function (err) {
-      if (err) {
-        return res.send(err.message);
-      }
-      return res.redirect("/login");
-    });
+    req.session.destroy(() => {
+      res.redirect('/login?message=You%20are%20logged%20out');
+  });
   } catch (error) {
     console.log("🚀 ~ exports.logOut= ~ error:", error);
     res.send(error.message);

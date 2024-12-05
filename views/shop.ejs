@@ -6,8 +6,15 @@
     <title>Document</title>
 </head>
 <body>
+<h1>Your Balance : <%= formatCurrency(user.balance) %></h1>
+
     <h1>Purchase Product</h1>
-<p>Name: <%= product.name %></p>
+    <h2>Shipping Details</h2>
+
+<p>Your Name : <%= user.name %></p>
+<p>Your Phone Number: <%= user.phoneNumber %></p>
+<p>Your Address: <%= user.address %></p>
+<p>Product Purchase: <%= product.name %></p>
 <p>Price: <%= formatCurrency(product.price) %></p>
 <form action="/products/<%= product.id %>/shop" method="POST">
     <button type="submit">Pay Now</button>

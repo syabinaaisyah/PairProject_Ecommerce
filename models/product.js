@@ -28,8 +28,8 @@ module.exports = (sequelize, DataTypes) => {
     }
     showStatus() {
       let status = ""
-      if (this.stock <= 5) {
-        status = "Almost Sold Out"
+      if (this.stock < 5) {
+        status = "Stock is less than 5"
       } else {
         status = "Ready"
       }

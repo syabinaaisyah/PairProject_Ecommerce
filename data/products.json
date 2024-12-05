@@ -1,14 +1,14 @@
 [{
   "name": "Samashi Washing Machine 16kg",
   "price": 8000000,
-  "stock": 30,
+  "stock": 3,
   "description": "Mesin cuci bukaan depan Samashi dengan kapasitas 16kg pencuci dan 8kg pengering, dilengkapi teknologi hemat energi dan aksesoris tambahan. Garansi 2 tahun.",
   "imageURL": "https://images.pexels.com/photos/48604/pexels-photo-48604.jpeg",
   "CategoryId": 1
 }, {
   "name": "WashiTech 12kg Washer",
   "price": 7500000,
-  "stock": 25,
+  "stock": 4,
   "description": "Mesin cuci bukaan atas WashiTech dengan kapasitas 12kg, dilengkapi fitur pengaturan cuci pintar dan hemat listrik. Cocok untuk keluarga besar.",
   "imageURL": "https://images.pexels.com/photos/244489/pexels-photo-244489.jpeg",
   "CategoryId": 1
@@ -43,7 +43,7 @@
 }, {
   "name": "ChillMaster 3-Door Fridge",
   "price": 20000000,
-  "stock": 20,
+  "stock": 3,
   "description": "Kulkas 3 pintu ChillMaster dengan fitur teknologi pembekuan cepat dan hemat energi. Kapasitas besar dengan pengaturan suhu yang bisa disesuaikan.",
   "imageURL": "https://images.pexels.com/photos/6264/food-healthy-vegetables-green.jpeg",
   "CategoryId": 2
@@ -71,7 +71,7 @@
 }, {
   "name": "Airblee AC 2PK",
   "price": 6000000,
-  "stock": 25,
+  "stock": 4,
   "description": "Pendingin ruangan Airblee tipe split dengan kapasitas 2PK, dilengkapi fitur hemat energi dan pengatur suhu pintar. Garansi resmi 2 tahun. Cocok untuk ruangan besar.",
   "imageURL": "https://images.pexels.com/photos/1369289/pexels-photo-1369289.jpeg",
   "CategoryId": 3
@@ -85,7 +85,7 @@
 }, {
   "name": "MaxCool 2.5PK",
   "price": 7500000,
-  "stock": 22,
+  "stock": 2,
   "description": "AC MaxCool dengan teknologi pengaturan suhu otomatis dan penghemat daya. Cocok untuk ruang kantor dan rumah.",
   "imageURL": "https://images.pexels.com/photos/415505/pexels-photo-415505.jpeg",
   "CategoryId": 3

@@ -6,8 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <%- include('./layout') %>
-
 <h1>Add Product</h1>
 <% if (errors) { %> <% errors.split(',').forEach((el) => { %>
     <p style="color: red"><%= el %></p>

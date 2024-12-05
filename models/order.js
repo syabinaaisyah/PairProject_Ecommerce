@@ -23,8 +23,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Order.init({
-    orderDate: DataTypes.DATE,
-    paymentStatus: DataTypes.STRING,
     CustomerId: {
      type: DataTypes.INTEGER,
       references: {

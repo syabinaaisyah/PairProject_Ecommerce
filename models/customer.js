@@ -47,6 +47,13 @@ module.exports = (sequelize, DataTypes) => {
     gender: DataTypes.STRING,
     UserId: DataTypes.INTEGER
   }, {
+    hooks: {
+      beforeCreate: (customer, options) => {
+        // console.log(`hook trigger`);
+        
+        customer.balance = 0;
+      }
+    },
     sequelize,
     modelName: 'Customer',
   });

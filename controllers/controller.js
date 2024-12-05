@@ -6,6 +6,11 @@ class Controller {
     // USER ROLE
     static async getAllProducts(req, res) {
         try {
+            
+            const userId = req.session.CustomerId
+            const customer = await Customer.findByPk(userId, {
+                attributes: ['balance'],
+              });
             const { search, category } = req.query;
             let where = {};
             if (search) where.name = { [Op.iLike]: `%${search}%` };
@@ -23,8 +28,8 @@ class Controller {
             });
 
             res.render('products', {
-                title: 'Products',
                 products,
+                balance: customer.balance,
                 categories,
                 selectedCategory: category || '',
                 search: search || '',
@@ -40,37 +45,44 @@ class Controller {
         try {
             // console.log(`masuk controller`);
             
-            const user = await Customer.findOne({ where: { UserId: req.user.id } });
+            const user = await Customer.findOne({ where: { UserId: req.session.CustomerId },
+                include: {
+                    model: User,
+                    as: 'user',
+                    attributes: ['email'], 
+                }, });
             // console.log("🚀 ~ Controller ~ myProfile ~ user:", user)
-            res.render('profile', { user });
+            res.render('profile', { user, formatCurrency });
         } catch (err) {
             console.log(err);
             res.send(err)
         }
     }
-
-    static logout(req, res) {
-        req.session.destroy(() => res.redirect('/login'));
-    }
+    
 
     static async topUpBalance(req, res) {
         try {
             const { balance } = req.body;
+            if (isNaN(balance) || balance <= 0) {
+                return res.send("Invalid balance amount.");
+            }
+    
             await Customer.increment('balance', {
                 by: parseInt(balance),
-                where: { UserId: req.user.id },
+                where: { UserId: req.session.CustomerId }, // Use session to identify the user
             });
+    
             res.redirect('/myProfile');
         } catch (err) {
-            console.log(err);
-            res.send(err)
+            console.log("🚀 ~ Controller ~ topUpBalance ~ error:", err);
+            res.status(500).send("Internal Server Error");
         }
     }
 
     static async getProductbyId(req, res) {
         try {
             const product = await Product.findByPk(req.params.id);
-            res.render('productDetail', { product });
+            res.render('productDetail', { product, formatCurrency});
         } catch (err) {
             console.log(err);
             res.send(err)
@@ -79,36 +91,58 @@ class Controller {
 
     static async shop(req, res) {
         try {
-            // console.log(`masuk controller shop`);
-            
+            const user = await Customer.findOne({ where: { UserId: req.session.CustomerId },
+                include: {
+                    model: User,
+                    as: 'user',
+                    attributes: ['email'], 
+                }, });
             const product = await Product.findByPk(req.params.id);
-            res.render('shop', { product, formatCurrency });
+            if (!product) {
+                return res.send("Product not found.");
+            }
+            res.render('shop', { product, user, formatCurrency });
         } catch (err) {
-            console.log(err);
-            res.send(err)
+            console.log("🚀 ~ Controller ~ shop ~ error:", err);
+            res.send(err);
         }
     }
 
-    static async deductBalance(req, res) {
+    static async deductBalanceAndDecrementStock(req, res) {
         try {
+            // console.log(`msk control`);
+            
             const product = await Product.findByPk(req.params.id);
-            const customer = await Customer.findOne({ where: { UserId: req.user.id } });
 
-            if (customer.balance < product.price) {
-                return res.send('Insufficient balance.');
-            }
+        if (!product) {
+            return res.send("Product not found.");
+        }
 
-            await Customer.decrement('balance', {
-                by: product.price,
-                where: { UserId: req.user.id },
-            });
+        const customer = await Customer.findOne({ where: { id: req.session.CustomerId } });
 
-            await Order.create({
-                CustomerId: customer.id,
-                ProductId: product.id,
-            });
+        if (!customer) {
+            return res.send("Customer not found.");
+        }
 
-            res.redirect('/myOrders');
+        if (customer.balance < product.price) {
+            return res.send("Insufficient balance to purchase this product.");
+        }
+
+        await Customer.decrement('balance', {
+            by: product.price,
+            where: { id: req.session.CustomerId }
+        });
+
+        await Product.decrement('stock', {
+            by: 1,
+            where: { id: product.id }
+        });
+        await Order.create({
+            CustomerId: req.session.CustomerId,
+            ProductId: product.id,
+        });
+
+        res.redirect('/myOrders');
         } catch (err) {
             console.log(err);
             res.send(err)
@@ -118,15 +152,24 @@ class Controller {
 
     static async getTransactionbyUserId(req, res) {
         try {
+            console.log(`sdh disni`);
+            
             const orders = await Order.findAll({
-                where: { CustomerId: req.user.CustomerId },
+                where: { CustomerId: req.session.CustomerId },
+                attributes: ['id', 'createdAt'],
                 include: [
-                    { model: Product, as: 'product' },
-                    { model: Customer, as: 'customer' },
+                    { model: Product, as: 'product', attributes: ['id', 'name', 'price'] },
+                    { model: Customer, as: 'customer', attributes: ['id', 'name', 'balance'] },
                 ],
                 order: [['createdAt', 'DESC']],
             });
-            res.render('transactionsUser', { orders });
+            console.log("🚀 ~ Controller ~ getTransactionbyUserId ~ orders:", orders)
+    
+            if (orders.length === 0) {
+                return res.render('transactionsUser', { message: 'No transactions found.' });
+            }
+    
+            res.render('transactionsUser', { orders, formatCurrency });
         } catch (err) {
             console.log(err);
             res.send(err)
