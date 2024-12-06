@@ -1,5 +1,6 @@
 const express = require('express')
 const session = require('express-session')
+const roleCheck = require('./middlewares/roleCheck');
 const app = express()
 const port = 3000
 
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended : true }));
   }
  }))
  app.use(require('./routers/loginRoute'));
+ app.use('/admin', roleCheck('admin'))
  app.use(require('./routers/index'));
 
 app.listen(port, () => {

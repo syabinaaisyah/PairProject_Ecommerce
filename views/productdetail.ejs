@@ -7,6 +7,8 @@
 </head>
 <body>
     <%- include('./layout') %>
+<a href="/products" class="btn btn-primary">Back to Home</a>
+
 <h1><%= product.name %></h1>
 <img src="<%= product.imageURL %>" alt="photoProduct" width="100px">
 <p>Price: <%= formatCurrency(product.price) %></p>
