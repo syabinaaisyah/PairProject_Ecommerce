@@ -9,7 +9,10 @@
 
 <body>
     <%- include('./layout') %>
-    <h2>Your Balance: <%= formatCurrency(balance) %></h2>
+    <% if (isAdmin) { %>
+        <a href="/admin/dashboard" class="btn btn-primary">Admin Dashboard</a>
+        <% } %>
+        <h2>Your Balance: <%= formatCurrency(balance) %></h2>
         <h1>Products</h1>
             <form action="/products" method="GET">
                 <input type="text" name="search" placeholder="Search for products" value="<%= search || '' %>">

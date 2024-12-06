@@ -8,7 +8,7 @@ exports.home = async (req, res) => {
     const message = req.query.message || null;
     const errors = req.session.errors || null; // Assuming errors are stored in the session or passed directly
     req.session.errors = null; // Clear errors after rendering
-    res.render("home", {errors, message});
+    res.render("home", { errors, message });
   } catch (error) {
     console.log("🚀 ~ exports.home= ~ error:", error);
     res.send(error.message);
@@ -20,7 +20,7 @@ exports.login = async (req, res) => {
     const message = req.query.message || null;
     const errors = req.session.errors || null; // Assuming errors are stored in the session or passed directly
     req.session.errors = null; // Clear errors after rendering
-    res.render("home", {message, errors});
+    res.render("home", { message, errors });
 
     // res.render("home");
   } catch (error) {
@@ -33,19 +33,21 @@ exports.loginPage = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email } });
-
+    // console.log("🚀 ~ exports.loginPage= ~ user:", user)
     if (user && bcrypt.compareSync(password, user.password)) {
-      req.session.CustomerId = user.id; // Store the user ID in the session
+      // Store user ID and role in session
+      // console.log(`masuk ke dalam sini`);
+      
+      req.session.CustomerId = user.id;
+      req.session.role = user.role;
 
-      // Check the user's role and redirect based on it
       if (user.role === 'admin') {
-          return res.redirect('/admin/dashboard');
-      } else {
-          return res.redirect('/');
+        return res.redirect('/admin/dashboard'); // Redirect to admin dashboard
       }
-  } else {
-      res.render('login', { message: 'Invalid email or password' });
-  }
+      return res.redirect('/products'); // Redirect normal users
+    } else {
+      return res.redirect('/login?error=Invalid email or password');
+    }
   } catch (error) {
     console.log("🚀 ~ exports.loginPage= ~ error:", error);
     res.status(500).send(error.message);
@@ -105,7 +107,7 @@ exports.logOut = async (req, res) => {
   try {
     req.session.destroy(() => {
       res.redirect('/login?message=You%20are%20logged%20out');
-  });
+    });
   } catch (error) {
     console.log("🚀 ~ exports.logOut= ~ error:", error);
     res.send(error.message);

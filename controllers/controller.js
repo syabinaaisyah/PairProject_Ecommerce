@@ -6,8 +6,8 @@ class Controller {
     // USER ROLE
     static async getAllProducts(req, res) {
         try {
-            
             const userId = req.session.CustomerId
+            const isAdmin = req.session.role === 'admin'
             const customer = await Customer.findByPk(userId, {
                 attributes: ['balance'],
               });
@@ -33,7 +33,8 @@ class Controller {
                 categories,
                 selectedCategory: category || '',
                 search: search || '',
-                formatCurrency
+                formatCurrency,
+                isAdmin
             })
         } catch (err) {
             console.log(err);

@@ -32,6 +32,8 @@ const validateRegister = [
   handleValidationErrors,
 ];
 
+
+
 const validateProductCreation = [
   body('name').notEmpty().withMessage('Product name is required'),
   body('price').isNumeric().withMessage('Price must be a valid number'),

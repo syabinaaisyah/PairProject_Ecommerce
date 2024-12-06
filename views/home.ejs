@@ -273,22 +273,23 @@
     </style>
   </head>
   <body>
-    
+    <% if (typeof message !== undefined && message) { %>
+      <p style="color: green;"><%= message %></p>
+  <% } %>
+    <% if (typeof errors !== undefined && errors && errors.length > 0) { %>
+      <ul style="color: red;">
+        <% errors.forEach(error => { %>
+          <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+    <% } %>
     <div class="container">
       
       <form action="/login" method="post">
         <br>
-        <% if (typeof message !== undefined && message) { %>
-          <p style="color: green;"><%= message %></p>
-      <% } %>
+        
       <br>
-        <% if (typeof errors !== undefined && errors && errors.length > 0) { %>
-          <ul style="color: red;">
-            <% errors.forEach(error => { %>
-              <li><%= error.msg %></li>
-            <% }) %>
-          </ul>
-        <% } %>
+        
         <label for="email">Email:</label>
         <input name="email" type="text" id="email" placeholder="Email here..." />
         <label for="password">Password:</label>
